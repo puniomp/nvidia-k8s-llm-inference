@@ -1,0 +1,17 @@
+define flow self check input
+  $allowed = execute check_input_allowed
+  if not $allowed
+    bot refuse unsupported request
+    stop
+
+define flow self check output
+  $safe = execute check_output_safe
+  if not $safe
+    bot refuse unsafe response
+    stop
+
+define bot refuse unsupported request
+  "I can help with supported enterprise AI platform, inference, and deployment topics."
+
+define bot refuse unsafe response
+  "I cannot provide that response as written."

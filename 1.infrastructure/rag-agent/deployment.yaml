@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rag-agent
+  labels:
+    app: rag-agent
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rag-agent
+  template:
+    metadata:
+      labels:
+        app: rag-agent
+    spec:
+      containers:
+        - name: rag-agent
+          image: python:3.11-slim
+          command: ["python", "-m", "http.server", "8080"]
+          ports:
+            - containerPort: 8080

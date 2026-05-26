@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: triton-inference-server
+  labels:
+    app: triton
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: triton
+  template:
+    metadata:
+      labels:
+        app: triton
+    spec:
+      containers:
+        - name: triton
+          image: nvcr.io/nvidia/tritonserver:24.05-py3
+          args:
+            - tritonserver
+            - --model-repository=/models
+            - --strict-model-config=false
+          ports:
+            - name: http
+              containerPort: 8000
+            - name: grpc
+              containerPort: 8001
+            - name: metrics
+              containerPort: 8002
+          resources:
+            limits:
+              nvidia.com/gpu: 1
+          readinessProbe:
+            httpGet:
+              path: /v2/health/ready
+              port: 8000
+            initialDelaySeconds: 20
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /v2/health/live
+              port: 8000
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          volumeMounts:
+            - name: model-repository
+              mountPath: /models
+            - name: identity-config
+              mountPath: /models/identity/config.pbtxt
+              subPath: config.pbtxt
+            - name: identity-config
+              mountPath: /models/identity/1/model.py
+              subPath: model.py
+      volumes:
+        - name: model-repository
+          emptyDir: {}
+        - name: identity-config
+          configMap:
+            name: triton-identity-model

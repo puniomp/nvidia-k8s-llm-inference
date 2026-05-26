@@ -1,0 +1,5 @@
+concurrency,requests,p50_ms,p95_ms,p99_ms,errors,gpu_utilization_avg,gpu_memory_avg
+1,100,25.0,31.0,38.0,0,tbd,tbd
+4,100,28.0,45.0,60.0,0,tbd,tbd
+8,100,39.0,80.0,120.0,0,tbd,tbd
+16,100,75.0,180.0,260.0,0,tbd,tbd

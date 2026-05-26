@@ -1,0 +1,10 @@
+.DS_Store
+__pycache__/
+.pycache/
+*.pyc
+.venv/
+venv/
+benchmarks/results/*.json
+benchmarks/results/*.log
+benchmarks/results/*.tmp
+!benchmarks/results/sample-results.csv

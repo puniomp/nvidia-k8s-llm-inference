@@ -1,0 +1,33 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: nvidia-k8s-llm-inference
+  region: us-east-1
+  version: "1.29"
+
+availabilityZones:
+  - us-east-1a
+  - us-east-1b
+
+managedNodeGroups:
+  - name: gpu-g4dn
+    instanceType: g4dn.xlarge
+    desiredCapacity: 1
+    minSize: 1
+    maxSize: 1
+    volumeSize: 80
+    privateNetworking: false
+    labels:
+      workload: gpu-inference
+      accelerator: nvidia
+    tags:
+      project: nvidia-k8s-llm-inference
+      workload: gpu-inference
+    iam:
+      withAddonPolicies:
+        cloudWatch: true
+
+cloudWatch:
+  clusterLogging:
+    enableTypes: []

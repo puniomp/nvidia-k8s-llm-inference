@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: huge-image-pull
+  labels:
+    experiment: node-pressure
+spec:
+  restartPolicy: Never
+  containers:
+    - name: triton
+      image: nvcr.io/nvidia/tritonserver:24.05-py3
+      command: ["sleep", "300"]
+      resources:
+        requests:
+          cpu: "1"
+          memory: 2Gi
+        limits:
+          cpu: "2"
+          memory: 4Gi

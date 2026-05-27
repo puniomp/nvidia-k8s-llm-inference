@@ -17,6 +17,14 @@ test -f 2.projects/triton-inference/README.md
 test -f 2.projects/triton-inference/model-repository/identity/config.pbtxt
 test -f 2.projects/nemo-guardrails/README.md
 test -f 3.use-cases/rag-agent/README.md
+test -f 4.operations/README.md
+test -f 4.operations/scheduling/inflated-requests.yaml
+test -f 4.operations/scheduling/gpu-pending-pod.yaml
+test -f 4.operations/node-pressure/huge-image-pull.yaml
+test -f 4.operations/coredns/dns-load.yaml
+test -f 4.operations/autoscaling/cpu-hpa-demo.yaml
+test -f 4.operations/disruption/pdb-blocking-drain.yaml
+test -f 4.operations/observability/README.md
 test -f benchmarks/run_triton_benchmark.py
 
 echo "Repository structure looks good."

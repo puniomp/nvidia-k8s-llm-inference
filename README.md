@@ -56,6 +56,13 @@ Kubernetes GPU Node Pool
   triton-inference/    Example Triton model repository
 3.use-cases/
   rag-agent/           Small RAG or tool-using agent app
+4.operations/
+  scheduling/          Pending pods, requests, taints, tolerations, GPU allocatable capacity
+  node-pressure/       Image pulls, node conditions, kubelet/node symptoms
+  coredns/             DNS load and service discovery failure modes
+  autoscaling/         HPA and node provisioning feedback loops
+  disruption/          PDB and node drain behavior
+  observability/       Commands for events, pods, nodes, metrics, and rollout triage
 benchmarks/
   results/             Benchmark output tables and notes
 docs/
@@ -140,6 +147,19 @@ docs/eks-gpu-triton.md
 ### RAG Agent
 
 `3.use-cases/rag-agent/` contains a minimal placeholder API for wiring an application layer into the guardrails and inference path.
+
+## Kubernetes Operations
+
+`4.operations/` contains focused failure-mode experiments for the Kubernetes internals behind GPU inference workloads. These cover scheduling, node pressure, CoreDNS, autoscaling, disruption controls, and observability.
+
+Each topic follows the same shape:
+
+- what the component does
+- what breaks at scale
+- symptoms
+- metrics, logs, and events to inspect
+- typical fixes
+- tradeoffs
 
 ## Roadmap
 

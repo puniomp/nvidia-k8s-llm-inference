@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pdb-single-replica
+  labels:
+    app: pdb-single-replica
+    experiment: disruption
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pdb-single-replica
+  template:
+    metadata:
+      labels:
+        app: pdb-single-replica
+    spec:
+      containers:
+        - name: app
+          image: registry.k8s.io/pause:3.9
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: pdb-single-replica
+spec:
+  minAvailable: 1
+  selector:
+    matchLabels:
+      app: pdb-single-replica

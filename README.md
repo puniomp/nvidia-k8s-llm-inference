@@ -69,6 +69,14 @@ docs/
 
 Each layer can be tested independently before combining the full path.
 
+Before creating the EKS cluster, run the preflight check:
+
+```bash
+bash 1.infrastructure/eks/preflight.sh
+```
+
+The default EKS config uses one `g4dn.xlarge` GPU node in `us-east-1`. This requires at least `4` vCPUs of EC2 **Running On-Demand G and VT instances** quota in that region. If the quota is `0`, request an increase before creating the cluster.
+
 1. Create an EKS GPU cluster:
 
 ```bash

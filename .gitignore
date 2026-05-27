@@ -4,6 +4,8 @@ __pycache__/
 *.pyc
 .venv/
 venv/
+AWSCLIV2.pkg
+eksctl_*.tar.gz
 benchmarks/results/*.json
 benchmarks/results/*.log
 benchmarks/results/*.tmp
